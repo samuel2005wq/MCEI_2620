@@ -2,3 +2,5 @@
 Este repositorio nos servirá para compartir código fuente de los diferentes proyectos que se desarrollarán a lo largo del curso
 
 Estudiante: Samuel Acuña
+
+Prof: Alexander Pérez Ruiz
