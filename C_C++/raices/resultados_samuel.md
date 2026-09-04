@@ -7,4 +7,8 @@ bisección       | 0.20164  |      29     | Dependiendo de los limites inferiore
 
 ----------------------------------------------
 
-falsa posición  | 0.20164  |      8      | Con los limites de 0 a 1, se demora menos en encontrar la raiz que en el caso de la raiz que se encuentra entre 1 y 3; entre 0 y 1 se demora 8 iteraciones, mientras que con los limites de 1 a 3 da 26 iteraciones.
+falsa posición  | 0.20164  |      8      | Con los limites de 0 a 1, se demora menos en encontrar la raiz que en el caso de la raiz que se encuentra entre 1 y 3; entre 0 y 1 se demora 8 iteraciones, mientras que con los limites de 1 a 3 da 26 iteraciones, dando la raíz en 2.12842.
+
+----------------------------------------------
+
+brent           | 0.20164  |      6      | El número de iteraciones en ambos limites (de 0 a 1 y de 1 a 3) son muy cercanos, siendo en el primer caso de 6 iteraciones y en el otro caso de 9 iteraciones, dando como resultado 2.12842.

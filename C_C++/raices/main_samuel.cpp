@@ -28,8 +28,8 @@ int main()
   double x_lo = 1.0;
   double x_hi = 3.0;
 
-  // Se selecciona el método: false position (método de la falsa posición)
-  T = gsl_root_fsolver_falsepos;
+  // Se selecciona el método: brent
+  T = gsl_root_fsolver_brent;
   // Reservas una parte de la memoria para el solver
   s = gsl_root_fsolver_alloc(T);
   // Inicializas el solver con la función y el intervalo
