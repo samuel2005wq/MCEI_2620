@@ -40,10 +40,9 @@ int main()
   F.params = nullptr; // no se usan parámetros en este ejemplo
 
   // Punto inicial para Newton
-  double x0 = 0; // aproximación inicial
+  double x0 = 2; // aproximación inicial
 
-  // Se selecciona el método: newton (con derivada)
-  T = gsl_root_fdfsolver_newton; // Método de Newton-Raphson (requiere df)
+  T = gsl_root_fdfsolver_secant; // Método de la secante con derivada
   // Reserva memoria para el solver
   s = gsl_root_fdfsolver_alloc(T);
   // Inicializa el solver con la función y la estimación inicial

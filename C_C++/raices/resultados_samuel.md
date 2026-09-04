@@ -16,3 +16,7 @@ brent           | 0.20164  |      6      | El número de iteraciones en ambos li
 ----------------------------------------------
 
 newton           | 0.20164  |      4      | El número de iteraciones en ambos limites (de 0 a 1 y de 1 a 3) son muy cercanos, siendo en el primer caso de 4 iteraciones y en el otro caso de 7 iteraciones, dando como resultado 2.12842. Eso si, algo a tener en cuenta es que este metodo requiere de que a la función le agregues su derivada para que funcione bien. Además, solo requiere del limite inferior, el superior no lo pide.
+
+----------------------------------------------
+
+secante           | 0.20164  |      5      | El número de iteraciones que se toma este metodo para encontrar las dos raices llega a ser igual; no obstante, para encontrar la otra raíz, ya no se puede usar el limite inferior de 1 (no pide limite superior) ya que va a encontrar la raiz 0.20164; para que encuentre la otra, se debe poner como limite inferior 2, esto da como resultado la raíz 2.12842.
