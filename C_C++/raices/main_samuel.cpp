@@ -42,7 +42,7 @@ int main()
   // Punto inicial para Newton
   double x0 = 2; // aproximación inicial
 
-  T = gsl_root_fdfsolver_secant; // Método de la secante con derivada
+  T = gsl_root_fdfsolver_steffenson; // Método de Steffenson (una variante de Newton)
   // Reserva memoria para el solver
   s = gsl_root_fdfsolver_alloc(T);
   // Inicializa el solver con la función y la estimación inicial
