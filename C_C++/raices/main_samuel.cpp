@@ -25,11 +25,11 @@ int main()
   F.params = nullptr; // no se usan parámetros en este ejemplo
 
   // Intervalo inicial que debe tener la raíz
-  double x_lo = 0.0;
-  double x_hi = 1.0;
+  double x_lo = 1.0;
+  double x_hi = 3.0;
 
-  // Se selecciona el método: bisección
-  T = gsl_root_fsolver_bisection;
+  // Se selecciona el método: false position (método de la falsa posición)
+  T = gsl_root_fsolver_falsepos;
   // Reservas una parte de la memoria para el solver
   s = gsl_root_fsolver_alloc(T);
   // Inicializas el solver con la función y el intervalo
