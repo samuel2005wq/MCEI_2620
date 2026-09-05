@@ -10,13 +10,13 @@
 double f(double x, void *params)
 {
   // Se implementa aquí la función.
-  return x * x * x - 5 * x + 1; // Primera función de trabajo: f(x) = x^3 - 5x + 1
+  return exp(-x) - x; // Primera función de trabajo: f(x) = x^3 - 5x + 1
 }
 
 // Derivada de f
 double df(double x, void *params)
 {
-  return 3.0 * x * x - 5.0;
+  return -exp(-x) - 1;
 }
 
 // f y df juntos (rellena y y dy)
@@ -40,7 +40,7 @@ int main()
   F.params = nullptr; // no se usan parámetros en este ejemplo
 
   // Punto inicial para Newton
-  double x0 = 2; // aproximación inicial
+  double x0 = 1; // aproximación inicial
 
   T = gsl_root_fdfsolver_steffenson; // Método de Steffenson (una variante de Newton)
   // Reserva memoria para el solver
