@@ -26,10 +26,10 @@ int main()
 
   // Intervalo inicial que debe tener la raíz
   double x_lo = 0.0;
-  double x_hi = 5.0;
+  double x_hi = 1.0;
 
-  // Se selecciona el método: Posición falsa (false position)
-  T = gsl_root_fsolver_falsepos;
+  // Se selecciona el método: Bisección
+  T = gsl_root_fsolver_bisection;
   // Reservas una parte de la memoria para el solver
   s = gsl_root_fsolver_alloc(T);
   // Inicializas el solver con la función y el intervalo

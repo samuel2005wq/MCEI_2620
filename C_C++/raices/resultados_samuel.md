@@ -4,7 +4,7 @@ Resultados con la función e^(-x) - x
 Método          | raíz     | iteraciones | Observaciones |
 ---------------------------------------------
 
-bisección       |          |             | 
+bisección       | 0.567143 |     28      | Es la que presenta la mayor cantidad de iteraciones, esto no se ve afectado en gran medida si se le aumenta o se le disminuye el limite superior, probe cambiando este con valores desde 5 hasta 1 y el número de iteraciones pasó de 30 a 28. Además, este presenta la misma limitante de que la raiz se debe encontrar entre el rango que tu le indiques.
 
 ----------------------------------------------
 
