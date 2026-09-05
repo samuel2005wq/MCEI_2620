@@ -10,43 +10,30 @@
 double f(double x, void *params)
 {
   // Se implementa aquí la función.
-  return exp(-x) - x; // Primera función de trabajo: f(x) = x^3 - 5x + 1
-}
-
-// Derivada de f
-double df(double x, void *params)
-{
-  return -exp(-x) - 1;
-}
-
-// f y df juntos (rellena y y dy)
-void fdf(double x, void *params, double *y, double *dy)
-{
-  *y = f(x, params);
-  *dy = df(x, params);
+  return exp(-x) - x; // Segunda función de trabajo: f(x) = exp(-x) - x
 }
 
 int main()
 {
-  // Tipos y objetos del solver de GSL (usando Newton con derivada)
-  const gsl_root_fdfsolver_type *T; // tipo de método con derivada (Newton)
-  gsl_root_fdfsolver *s;            // solver para métodos con derivada
-  gsl_function_fdf F;               // estructura que contiene f, df, fdf y params
+  // Tipos y objetos del solver de GSL
+  const gsl_root_fsolver_type *T; // se  indica el tipo de método del gsl
+  gsl_root_fsolver *s;            // es un puntero al solver donde se tiene la información del método y el estado de la iteración
+  gsl_function F;                 // la estructura que contiene la función y parámetros
 
-  // Aqui se asocia la función y parámetros a la estructura del gsl_function_fdf
-  F.f = &f;           // función objetivo
-  F.df = &df;         // derivada de la función
-  F.fdf = &fdf;       // función que calcula f y df juntos
+  // Aqui se asocia la función y parámetros a la estructura del gsl_function
+  F.function = &f;
   F.params = nullptr; // no se usan parámetros en este ejemplo
 
-  // Punto inicial para Newton
-  double x0 = 1; // aproximación inicial
+  // Intervalo inicial que debe tener la raíz
+  double x_lo = 0.0;
+  double x_hi = 1.0;
 
-  T = gsl_root_fdfsolver_newton; // Método de Newton para encontrar raíces
-  // Reserva memoria para el solver
-  s = gsl_root_fdfsolver_alloc(T);
-  // Inicializa el solver con la función y la estimación inicial
-  gsl_root_fdfsolver_set(s, &F, x0);
+  // Se selecciona el método: Brent
+  T = gsl_root_fsolver_brent;
+  // Reservas una parte de la memoria para el solver
+  s = gsl_root_fsolver_alloc(T);
+  // Inicializas el solver con la función y el intervalo
+  gsl_root_fsolver_set(s, &F, x_lo, x_hi);
 
   // Cabecera de la salida que mostrará la iteración y el intervalo
   std::cout << "iter\t" << "inf\t" << "sup\t" << "raíz\n";
@@ -55,25 +42,26 @@ int main()
   int iter = 0;
   int max_iter = 100; // límite de iteraciones por seguridad
   double r;           // aproximación actual de la raíz
-  double x_prev = x0; // valor previo para comprobar delta
 
   // Bucle de iteración: se itera hasta convergencia o hasta max_iter
   do
   {
     iter++;
-    // Ejecuta una iteración del solver (método con derivada)
-    status = gsl_root_fdfsolver_iterate(s);
+    // Ejecuta una iteración del solver
+    status = gsl_root_fsolver_iterate(s);
     // Recupera la aproximación actual de la raíz
-    r = gsl_root_fdfsolver_root(s);
+    r = gsl_root_fsolver_root(s);
+    // Recupera los extremos del intervalo actual
+    x_lo = gsl_root_fsolver_x_lower(s);
+    x_hi = gsl_root_fsolver_x_upper(s);
     // Imprime el progreso de la iteración
-    std::cout << iter << "\t" << x_prev << "\t" << r << "\t" << (r - x_prev) << "\n";
-    // Comprueba si la diferencia entre iteraciones es suficientemente pequeña
-    status = gsl_root_test_delta(r, x_prev, 0.0, 1e-8);
-    x_prev = r;
+    std::cout << iter << "\t" << x_lo << "\t" << x_hi << "\t" << r << "\n";
+    // Comprueba si el intervalo es suficientemente pequeño (tolerancia absoluta)
+    status = gsl_root_test_interval(x_lo, x_hi, 0.0, 1e-8);
   } while (status == GSL_CONTINUE && iter < max_iter);
 
   // Imprime la raíz encontrada y libera los recursos
   std::cout << "\nRaiz encontrada = " << r << std::endl;
-  gsl_root_fdfsolver_free(s);
+  gsl_root_fsolver_free(s);
   return 0;
 }
