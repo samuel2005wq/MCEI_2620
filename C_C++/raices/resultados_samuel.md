@@ -8,7 +8,7 @@ bisección       |          |             |
 
 ----------------------------------------------
 
-falsa posición  |          |             | 
+falsa posición  | 0.567143 |      7      | Al aumentarle el limite superior de 1 a 5, el número de iteraciones fueron aumentando, llegando hasta tener 10 iteraciones. Además, al igual que el caso del metodo brent, se requiere que la raiz de la función se encuentre dentro del rango que uno indica con x_lo y x_hi, si no genera un error.
 
 ----------------------------------------------
 

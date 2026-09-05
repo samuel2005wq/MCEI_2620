@@ -26,10 +26,10 @@ int main()
 
   // Intervalo inicial que debe tener la raíz
   double x_lo = 0.0;
-  double x_hi = 1.0;
+  double x_hi = 5.0;
 
-  // Se selecciona el método: Brent
-  T = gsl_root_fsolver_brent;
+  // Se selecciona el método: Posición falsa (false position)
+  T = gsl_root_fsolver_falsepos;
   // Reservas una parte de la memoria para el solver
   s = gsl_root_fsolver_alloc(T);
   // Inicializas el solver con la función y el intervalo
