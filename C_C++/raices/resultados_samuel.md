@@ -16,7 +16,7 @@ brent           |          |             |
 
 ----------------------------------------------
 
-newton          |          |             | 
+newton          | 0.567143 |      4      | Al realizar las pruebas de ir disminuyendo el valor de la aproximación inicial de 5 a 1, el número de iteraciones fue disminuyendo, iniciando desde 6 hasta quedar en 4. Además, en los primeros intentos (con x0 = 5 y x0 = 4), las últimas iteraciones tenían una diferencia entre las raices muy pequeña, en el orden de 10^-16; mientras que, en los últimos intentos con valores de x0 más pequeños, la diferencia entre las raices obtenidas en cada iteración llegaban a estar en el orden de 10^-9, es una cosa que me pareció curiosa.
 
 ----------------------------------------------
 
