@@ -20,7 +20,7 @@ newton          |          |             |
 
 ----------------------------------------------
 
-secante         |          |             | 
+secante         | 0.567143 |      5      | Se realizaron varios intentos con diferentes aproximaciones iniciales (x0), desde 5 a 1; con estos cambios se pasó de tener 7 iteraciones a 5 iteraciones. Da el mismo resultado en todas.
 
 ----------------------------------------------
 
