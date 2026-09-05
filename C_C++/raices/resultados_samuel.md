@@ -12,7 +12,7 @@ falsa posición  |          |             |
 
 ----------------------------------------------
 
-brent           |          |             | 
+brent           | 0.567143 |      6      | En este caso, se tiene la limitante de que la raiz debe estar dentro del limite que se estipule; por ejemplo, cuando los limites son [1,5], da un error. Ahora bien, dejando el limite inferior en 0, y variando el limite superior de 1 a 5, el número de iteraciones que se obtiene no varía mucho, manteniendose entre 6 a 7 iteraciones. La raiz final si se mantiene constante, no cambia.
 
 ----------------------------------------------
 
