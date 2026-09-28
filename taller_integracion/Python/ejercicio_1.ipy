@@ -1,0 +1,54 @@
+# ejercicio1_scipy.py
+# ------------------------------------------------------------
+# Ejercicio 1 - Parte D (Python con SciPy)
+# f(x) = e^{-0.4x}(1 + 0.5 sin(3x)),  0 <= x <= 8
+# Ejecutar:  python3 ejercicio1_scipy.py
+# ------------------------------------------------------------
+import time
+import numpy as np
+from scipy.integrate import quad
+
+def f(x):
+    return np.exp(-0.4 * x) * (1.0 + 0.5 * np.sin(3.0 * x))
+
+def F(x):  # antiderivada analitica
+    return (-2.5 * np.exp(-0.4 * x)
+            + (0.5 / 9.16) * np.exp(-0.4 * x) * (-0.4 * np.sin(3.0 * x) - 3.0 * np.cos(3.0 * x)))
+
+a, b = 0.0, 8.0
+I_ref = F(b) - F(a)
+print(f"Referencia analitica : {I_ref:.15f}\n")
+
+# ---- quad con las mismas tolerancias que en GSL (1e-10) ----
+epsabs, epsrel, limit = 1e-10, 1e-10, 1000
+valor, err_est, info = quad(f, a, b, epsabs=epsabs, epsrel=epsrel,
+                            limit=limit, full_output=1)[:3]
+neval = info["neval"]
+
+R = 5000
+t0 = time.perf_counter()
+for _ in range(R):
+    quad(f, a, b, epsabs=epsabs, epsrel=epsrel, limit=limit)
+t_quad = (time.perf_counter() - t0) / R
+
+print("=== scipy.integrate.quad ===")
+print(f"Resultado            : {valor:.15f}")
+print(f"Error estimado       : {err_est:.3e}")
+print(f"Error real           : {abs(valor - I_ref):.3e}")
+print(f"Tolerancia absoluta  : {epsabs:.1e}")
+print(f"Tolerancia relativa  : {epsrel:.1e}")
+print(f"limit (subintervalos): {limit}")
+print(f"Evaluaciones de f    : {neval}")
+print(f"Subintervalos usados : {info['last']}")
+print(f"Tiempo promedio      : {t_quad:.3e} s\n")
+
+# ---- efecto de la tolerancia ----
+print("=== Efecto de la tolerancia (epsabs = epsrel = tol) ===")
+print(f"{'tol':>8} {'Integral':>20} {'Err. estimado':>15} {'Err. real':>12} {'neval':>7} {'Tiempo (s)':>12}")
+for tol in [1e-4, 1e-6, 1e-8, 1e-10, 1e-12]:
+    v, e, inf = quad(f, a, b, epsabs=tol, epsrel=tol, limit=limit, full_output=1)[:3]
+    t0 = time.perf_counter()
+    for _ in range(R):
+        quad(f, a, b, epsabs=tol, epsrel=tol, limit=limit)
+    t = (time.perf_counter() - t0) / R
+    print(f"{tol:8.0e} {v:20.14f} {e:15.3e} {abs(v - I_ref):12.3e} {inf['neval']:7d} {t:12.3e}")
