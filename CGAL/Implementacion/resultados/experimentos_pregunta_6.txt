@@ -1,0 +1,60 @@
+== 1. Sin repetidos (100 puntos) ==
+  puntos insertados:     100
+  vertices envolvente:   9
+  vertices Delaunay:     100
+  aristas finitas:       288
+  caras finitas:         189
+  dimension triangulacion: 2
+
+== 1. Con repetidos (100 puntos x2) ==
+  puntos insertados:     200
+  vertices envolvente:   9
+  vertices Delaunay:     100
+  aristas finitas:       288
+  caras finitas:         189
+  dimension triangulacion: 2
+
+== 2. Puntos colineales (y = x) ==
+  puntos insertados:     50
+  vertices envolvente:   2
+  vertices Delaunay:     50
+  aristas finitas:       49
+  caras finitas:         0
+  dimension triangulacion: 1
+
+== 3. Cocirculares (12 puntos, radio 5) ==
+  puntos insertados:     12
+  vertices envolvente:   12
+  vertices Delaunay:     12
+  aristas finitas:       21
+  caras finitas:         10
+  dimension triangulacion: 2
+
+== 3b. Malla regular 10x10 ==
+  puntos insertados:     100
+  vertices envolvente:   4
+  vertices Delaunay:     100
+  aristas finitas:       261
+  caras finitas:         162
+  dimension triangulacion: 2
+
+== 4. Casi colineales: A=(0,0), B=(1,1), C=(2,2+eps) ==
+  eps        | determinante double | orientacion CGAL
+  0.1   | 0.1   | giro izquierda
+  1e-08   | 1e-08   | giro izquierda
+  1e-15   | 8.88178e-16   | giro izquierda
+  1e-16   | 0   | COLINEALES
+  1e-17   | 0   | COLINEALES
+
+  Nota: 2+1e-17 se redondea a 2.0 en double, por lo que el punto
+  realmente almacenado ya es colineal: el error ocurre al
+  representar la entrada, no en el predicado.
+
+== 5. Nube casi colineal (ruido 1e-9) ==
+  puntos insertados:     200
+  vertices envolvente:   14
+  vertices Delaunay:     200
+  aristas finitas:       583
+  caras finitas:         384
+  dimension triangulacion: 2
+

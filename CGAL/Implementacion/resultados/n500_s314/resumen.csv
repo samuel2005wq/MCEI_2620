@@ -1,0 +1,2 @@
+n,semilla,dimension,vertices_hull,vertices,aristas_finitas,caras_finitas,hull_ms_rep1,delaunay_ms_rep1,valida,euler_V-E+F,aristas_esperadas,caras_esperadas
+500,314,2,17,500,1480,981,0.028449,0.226422,1,1,1480,981
